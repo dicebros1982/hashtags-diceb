@@ -13,6 +13,7 @@ import { map } from "rxjs/operators";
 export class TagsService {
   private parentCollection: AngularFirestoreCollection<ParentModel>;
   private childrenCollection: AngularFirestoreCollection<ChildModel>;
+  private parentsPerSectionCollection: AngularFirestoreCollection<ParentModel>;
 
   constructor(readonly afs: AngularFirestore) {
     this.parentCollection = this.afs.collection("parents");
@@ -36,6 +37,20 @@ export class TagsService {
         actions.map(a => {
           const id = a.payload.doc.id;
           const data = a.payload.doc.data() as ChildModel;
+          return { id, ...data };
+        })
+      )
+    );
+  }
+  getParentsPerSection(section: string) {
+    this.parentsPerSectionCollection = this.afs.collection("parents", ref =>
+      ref.where("section", "==", section)
+    );
+    return this.parentsPerSectionCollection.snapshotChanges().pipe(
+      map(actions =>
+        actions.map(a => {
+          const id = a.payload.doc.id;
+          const data = a.payload.doc.data() as ParentModel;
           return { id, ...data };
         })
       )

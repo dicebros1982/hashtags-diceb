@@ -20,7 +20,7 @@
 			<p>
 				<mat-form-field>
 					<mat-label>section</mat-label>
-					<mat-select formControlName="section">
+					<mat-select formControlName="section" (ngModelChange)="getParentsPerSection($event)">
 						<mat-option *ngFor="let section of sections | keyvalue" [value]="section.key">
 							{{section.value}}
 						</mat-option>
@@ -30,7 +30,7 @@
 			<p>
 				<mat-form-field>
 					<mat-label>parent tag</mat-label>
-					<mat-select formControlName="parentTag">
+					<mat-select formControlName="parentTag" >
 						<mat-option *ngFor="let parent of parents | async" [value]="parent.id">{{
                 parent.name
               }}</mat-option>

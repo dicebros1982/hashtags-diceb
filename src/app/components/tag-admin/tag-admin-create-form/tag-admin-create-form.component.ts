@@ -6,7 +6,9 @@ import {
   NgForm,
   FormControl
 } from "@angular/forms";
+import { Observable } from "rxjs";
 import { TagsService } from "../../../services/tags.service";
+import { ParentModel } from "../../../models/parent-model";
 
 @Component({
   selector: "app-tag-admin-create-form",
@@ -14,7 +16,8 @@ import { TagsService } from "../../../services/tags.service";
   styleUrls: ["./tag-admin-create-form.component.css"]
 })
 export class TagAdminCreateFormComponent implements OnInit {
-  tagForm: FormGroup;
+  private tagForm: FormGroup;
+  private parents: Observable<ParentModel[]>;
 
   private sections = {
     general: "general tags",
@@ -38,5 +41,9 @@ export class TagAdminCreateFormComponent implements OnInit {
       section: [""],
       parentTag: [""]
     });
+  }
+
+  getParentsPerSection(section: string) {
+    this.parents = this.tagService.getParentsPerSection(section);
   }
 }
