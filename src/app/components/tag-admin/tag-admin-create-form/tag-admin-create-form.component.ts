@@ -16,6 +16,12 @@ import { TagsService } from "../../../services/tags.service";
 export class TagAdminCreateFormComponent implements OnInit {
   tagForm: FormGroup;
 
+  private sections = {
+    general: "general tags",
+    trending: "trending tags",
+    language: "language specific tags"
+  };
+
   @ViewChild("formDirective", { static: false }) private formDirective: NgForm;
 
   constructor(private fb: FormBuilder, private tagService: TagsService) {}
