@@ -32,7 +32,6 @@ export class TagAdminCreateFormComponent implements OnInit {
 
   ngOnInit() {
     this.buildForm();
-    this.formFillStarted();
   }
 
   buildForm() {
@@ -43,14 +42,6 @@ export class TagAdminCreateFormComponent implements OnInit {
       section: [""],
       parentTag: [""]
     });
-  }
-
-  //clear upload success msg on typing new tag
-  formFillStarted() {
-    let touched = this.tagForm.touched;
-    if (touched) {
-      this.isSuccess = false;
-    }
   }
 
   resetForm() {
@@ -89,6 +80,9 @@ export class TagAdminCreateFormComponent implements OnInit {
         this.createChild(pushVal);
       }
       this.isSuccess = true;
+      setTimeout(() => {
+        this.isSuccess = false;
+      }, 2000);
     } catch (error) {
       console.log(error);
     }

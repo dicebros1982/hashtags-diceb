@@ -3,7 +3,7 @@
     <div *ngIf="isSuccess">
       hashtag uploaded
     </div>
-		<form [formGroup]="tagForm" (ngSubmit)="onSubmit()">
+		<form [formGroup]="tagForm" (ngSubmit)="onSubmit()"  #formDirective="ngForm">
 			<p>
 				<mat-radio-group color="primary" formControlName="relation">
 					<mat-radio-button class="radio_btn" [checked]="true" value="parent">parent tag</mat-radio-button>

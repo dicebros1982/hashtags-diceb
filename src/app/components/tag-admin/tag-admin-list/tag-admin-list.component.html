@@ -1,1 +1,1 @@
-<div *ngFor="let parent of parents | async">{{parent.name}}</div>
+<div *ngFor="let parent of parents | async | parentFilter:'general'">{{parent.name}}</div>

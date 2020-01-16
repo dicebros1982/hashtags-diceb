@@ -13,6 +13,7 @@ import { TagAdminListComponent } from "./components/tag-admin/tag-admin-list/tag
 import { TagsService } from "./services/tags.service";
 import { ChildFilterPipe } from "./pipes/child-filter.pipe";
 import { TagAdminCreateFormComponent } from "./components/tag-admin/tag-admin-create-form/tag-admin-create-form.component";
+import { ParentFilterPipe } from './pipes/parent-filter.pipe';
 
 @NgModule({
   imports: [
@@ -28,7 +29,8 @@ import { TagAdminCreateFormComponent } from "./components/tag-admin/tag-admin-cr
     TagAdminComponent,
     TagAdminListComponent,
     ChildFilterPipe,
-    TagAdminCreateFormComponent
+    TagAdminCreateFormComponent,
+    ParentFilterPipe
   ],
   bootstrap: [AppComponent],
   providers: [TagsService]
