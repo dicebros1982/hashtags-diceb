@@ -1,6 +1,6 @@
 <mat-card>
 	<mat-card-content>
-		<form [formGroup]="tagForm">
+		<form [formGroup]="tagForm" (ngSubmit)="onSubmit()">
 			<p>
 				<mat-radio-group color="primary" formControlName="relation">
 					<mat-radio-button class="radio_btn" [checked]="true" value="parent">parent tag</mat-radio-button>

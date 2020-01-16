@@ -46,4 +46,34 @@ export class TagAdminCreateFormComponent implements OnInit {
   getParentsPerSection(section: string) {
     this.parents = this.tagService.getParentsPerSection(section);
   }
+
+  onSubmit() {
+    const relation = this.tagForm.value.relation;
+
+    const formVal = this.tagForm.value;
+    const name = formVal.name;
+    const description = formVal.description;
+    const section = formVal.section;
+    const parentTag = formVal.parentTag;
+
+    let pushVal = {};
+
+    try {
+      if (relation === "parent") {
+        pushVal = { name: name, description: description, section: section };
+        this.createParent(pushVal);
+      }
+      if (relation === "child") {
+        this.createChild();
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  createParent(pushVal: Object) {
+    this.tagService.createParent(pushVal);
+  }
+
+  createChild() {}
 }

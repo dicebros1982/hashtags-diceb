@@ -56,4 +56,9 @@ export class TagsService {
       )
     );
   }
+  createParent(pushVal: Object) {
+    console.log(pushVal);
+  }
+
+  createChild() {}
 }
