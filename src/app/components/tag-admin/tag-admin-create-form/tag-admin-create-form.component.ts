@@ -18,6 +18,7 @@ import { ParentModel } from "../../../models/parent-model";
 export class TagAdminCreateFormComponent implements OnInit {
   private tagForm: FormGroup;
   private parents: Observable<ParentModel[]>;
+  private isSuccess: Boolean = false;
 
   private sections = {
     general: "general tags",
@@ -31,6 +32,7 @@ export class TagAdminCreateFormComponent implements OnInit {
 
   ngOnInit() {
     this.buildForm();
+    this.formFillStarted();
   }
 
   buildForm() {
@@ -43,13 +45,27 @@ export class TagAdminCreateFormComponent implements OnInit {
     });
   }
 
+  //clear upload success msg on typing new tag
+  formFillStarted() {
+    let touched = this.tagForm.touched;
+    if (touched) {
+      this.isSuccess = false;
+    }
+  }
+
+  resetForm() {
+    this.formDirective.resetForm();
+    this.buildForm();
+    this.tagForm.value.relation = "parent";
+  }
+
   getParentsPerSection(section: string) {
     this.parents = this.tagService.getParentsPerSection(section);
   }
 
   onSubmit() {
     const relation = this.tagForm.value.relation;
-
+    console.log(relation);
     const formVal = this.tagForm.value;
     const name = formVal.name;
     const description = formVal.description;
@@ -62,10 +78,17 @@ export class TagAdminCreateFormComponent implements OnInit {
       if (relation === "parent") {
         pushVal = { name: name, description: description, section: section };
         this.createParent(pushVal);
+        this.resetForm();
       }
       if (relation === "child") {
-        this.createChild();
+        pushVal = {
+          name: name,
+          description: description,
+          parentTag: parentTag
+        };
+        this.createChild(pushVal);
       }
+      this.isSuccess = true;
     } catch (error) {
       console.log(error);
     }
@@ -75,5 +98,7 @@ export class TagAdminCreateFormComponent implements OnInit {
     this.tagService.createParent(pushVal);
   }
 
-  createChild() {}
+  createChild(pushVal: Object) {
+    this.tagService.createChild(pushVal);
+  }
 }

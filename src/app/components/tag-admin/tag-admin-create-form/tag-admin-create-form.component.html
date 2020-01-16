@@ -1,5 +1,8 @@
 <mat-card>
 	<mat-card-content>
+    <div *ngIf="isSuccess">
+      hashtag uploaded
+    </div>
 		<form [formGroup]="tagForm" (ngSubmit)="onSubmit()">
 			<p>
 				<mat-radio-group color="primary" formControlName="relation">
