@@ -5,6 +5,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { MatCardModule } from "@angular/material/card";
 import { MatSelectModule } from "@angular/material/select";
 import { MatRadioModule } from "@angular/material/radio";
+import { MatExpansionModule } from "@angular/material/expansion";
 
 const materialModules = [
   MatButtonModule,
@@ -12,7 +13,8 @@ const materialModules = [
   BrowserAnimationsModule,
   MatCardModule,
   MatSelectModule,
-  MatRadioModule
+  MatRadioModule,
+  MatExpansionModule
 ];
 
 @NgModule({

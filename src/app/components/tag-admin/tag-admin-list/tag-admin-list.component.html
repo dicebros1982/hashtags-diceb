@@ -1,1 +1,41 @@
-<div *ngFor="let parent of parents | async | parentFilter:'general'">{{parent.name}}</div>
+<mat-accordion>
+	<mat-expansion-panel>
+		<mat-expansion-panel-header>
+			<mat-panel-title>
+				general tags
+			</mat-panel-title>
+		</mat-expansion-panel-header>
+
+		<mat-accordion>
+			<mat-expansion-panel *ngFor="let parent of parents | async | parentFilter:'general'">
+				<mat-expansion-panel-header>
+					<mat-panel-title>
+						{{parent.name}}
+					</mat-panel-title>
+				</mat-expansion-panel-header>
+				{{parent.description}}
+			</mat-expansion-panel>
+		</mat-accordion>
+
+	</mat-expansion-panel>
+
+	<mat-expansion-panel>
+		<mat-expansion-panel-header>
+			<mat-panel-title>
+				trending tags
+			</mat-panel-title>
+		</mat-expansion-panel-header>
+
+		<mat-accordion>
+			<mat-expansion-panel *ngFor="let parent of parents | async | parentFilter:'general'">
+				<mat-expansion-panel-header>
+					<mat-panel-title>
+						{{parent.name}}
+					</mat-panel-title>
+				</mat-expansion-panel-header>
+				{{parent.description}}
+			</mat-expansion-panel>
+		</mat-accordion>
+
+	</mat-expansion-panel>
+</mat-accordion>
